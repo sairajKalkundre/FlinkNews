@@ -1,12 +1,26 @@
-import React,{useState} from "react";
-import { FlatList,Text } from "react-native";
+import React from "react";
+import { FlatList,StyleSheet,Text,View } from "react-native";
 import * as theme from './../../styles/theme';
+
 const flatListItem  = ({item}) => (
-    <Text style = {{color : theme.colors.white}}>{item.title}</Text>
+    <View style = {{padding : 10}}>
+         <Text style = {styles.textStyle}>{item.title}</Text>
+    </View>
 ) 
 
-export function CustomFlatList(props) : React.ReactElement{
-    const [data , setData] = useState([{title : 'Hi' }, {title : 'Hello'}]);
+interface FlatListProps {
+    data : Array<Object>,
+}
+
+const styles = StyleSheet.create({
+    textStyle : {
+        ...theme.typography.type300 , 
+        color : theme.colors.white,
+    }
+});
+
+export function CustomFlatList(props : FlatListProps) : React.ReactElement{
+    const {data } = props
     return(
         <FlatList
             data = {data}
