@@ -25,6 +25,7 @@
 import { RootStackParams } from "../../screens/routeParams";
 import {Header} from '../../components/Header';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
 interface Topstoriesprops {
   navigation :  StackNavigationProp<RootStackParams ,  'Topstories'>;
 }
