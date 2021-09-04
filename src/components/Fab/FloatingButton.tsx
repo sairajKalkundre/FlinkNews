@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 
 export function FloatingButton(props : FloatingProps) : React.ReactElement{
     return(
-        <View style = {{flexDirection : 'row', alignItems : 'center', justifyContent : 'center' ,position  : 'absolute' , flex : 1,bottom : 0,width : '100%'}}>
+        <View style = {{flexDirection : 'row', alignItems : 'center', justifyContent : 'center' ,position  : 'absolute' , flex : 1,bottom : 0,width : '100%' , backgroundColor : 'transparent'}}>
         <Pressable style = {styles.btnContainer}>
                       <Image
                               style = {styles.previousStyle}

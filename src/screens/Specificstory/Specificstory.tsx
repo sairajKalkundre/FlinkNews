@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  ActivityIndicator, StyleSheet
+  ActivityIndicator, StyleSheet,StatusBar
 } from 'react-native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParams } from "../../screens/routeParams";
@@ -18,7 +18,13 @@ interface SpecificStoryProps {
     <ActivityIndicator 
           color = 'red'
           size = 'large'
-          style = {{flex : 1 , justifyContent  : 'center'}}/>
+          style = {{    position: 'absolute',
+                            flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: '100%',
+                            width: '100%',
+                            backgroundColor: 'white'}}/>
    )
 
  export function Specificstory(props : SpecificStoryProps) : React.ReactElement{
@@ -27,16 +33,19 @@ interface SpecificStoryProps {
       props.navigation.goBack();
   }
    return (
-     <SafeAreaView style = {{flex : 1}}>
+     <SafeAreaView style = {{flex : 1, backgroundColor : '#000'}}>
               <Header title = 'Specific story' backButtonVisible = {true} onPress = {navigate}/>
                 <WebView 
+                              style = {{flex : 1}}
+                              originWhitelist={['*']}
                               javascriptEnabled = {true}
                               domStorageEnabled = {true}
                               renderLoading = {showActivityIndicator}
                               startInLoadingState = {true} 
-                              source = {{uri :  "https://www.newyorker.com/science/elements/reverse-innovation-could-save-lives-why-isnt-western-medicine-embracing-it"}}
+                              source = {{uri :  "https://www.express.co.uk/news/world/1486258/Angela-merkel-chancellor-german-election-politics-candidate-cdu-europe-chris-parry-news-vn"}}
                               />
                   <FloatingButton />
+
      </SafeAreaView>
    );
  };

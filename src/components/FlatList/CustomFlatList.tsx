@@ -20,7 +20,7 @@ export function CustomFlatList(props : FlatListProps) : React.ReactElement{
     const flatListItem  = ({item}) => (
         <View style = {{padding : 10}}>
             <TouchableOpacity onPress = {onPress}>
-                <Text style = {styles.textStyle}>{item.title}</Text>
+                <Text style = {styles.textStyle}><Text >{'\u2022' + ' '}  </Text>{item.title}</Text>
              </TouchableOpacity>
         </View>
     ) 
