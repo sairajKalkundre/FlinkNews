@@ -1,15 +1,14 @@
 import React from "react";
-import { FlatList,StyleSheet,Text,View } from "react-native";
+import { FlatList,StyleSheet,Text,TouchableOpacity,View } from "react-native";
 import * as theme from './../../styles/theme';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParams } from "../../screens/routeParams";
 
-const flatListItem  = ({item}) => (
-    <View style = {{padding : 10}}>
-         <Text style = {styles.textStyle}>{item.title}</Text>
-    </View>
-) 
 
 interface FlatListProps {
     data : Array<Object>,
+    onPress() : void
+    // navigation :  StackNavigationProp<RootStackParams ,  'Topstories'>;
 }
 
 const styles = StyleSheet.create({
@@ -20,11 +19,21 @@ const styles = StyleSheet.create({
 });
 
 export function CustomFlatList(props : FlatListProps) : React.ReactElement{
-    const {data } = props
+    const {data , onPress} = props
+
+    const flatListItem  = ({item}) => (
+        <View style = {{padding : 10}}>
+            <TouchableOpacity onPress = {onPress}>
+                <Text style = {styles.textStyle}>{item.title}</Text>
+             </TouchableOpacity>
+        </View>
+    ) 
+    
     return(
         <FlatList
             data = {data}
             renderItem = {flatListItem}
         />
+        
     )
 }

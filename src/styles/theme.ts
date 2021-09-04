@@ -5,6 +5,11 @@ export const colors = {
 
 export const flatListBgColor : string = '#000';
 
+export const fullScreen = {
+	flatListBgColor,
+	flexGrow: 1,
+};
+
 export const typography = {
     type300 : {
         fontSize :  16,

@@ -13,7 +13,7 @@
    StyleSheet,
    View,
    Text,
-   Image,
+   Image,TouchableOpacity
  } from 'react-native';
  import WebView from 'react-native-webview';
  //import all the components we are going to use.
@@ -21,28 +21,28 @@
  import bbcNews from '../../assets/images/bbcNews.png';
  import * as theme from '../../styles/theme';
  import { CustomFlatList} from '../../components/FlatList';
- 
- export function TopStories() : React.ReactElement{
+ import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParams } from "../../screens/routeParams";
+
+interface Topstoriesprops {
+  navigation :  StackNavigationProp<RootStackParams ,  'Topstories'>;
+}
+
+
+ export function TopStories(props:Topstoriesprops) : React.ReactElement{
    const [data , setData] = useState([{title : 'At an Afghanistan border crossing, people face uncertainty and a long wait' }, 
                                                          {title : 'India Ravi Ashwin omission "may be an issue with personalities and clashes"'}]);
-   // useEffect(() => {
-   //   let url = 'https://hacker-news.firebaseio.com/v0/topstories.json';
-   //      axios.get(url)
-   //      .then(function (response) {
-   //        setData(response);
-   //        console.log('Response' , response.data);
-   //      })
-   //      .catch(function (error) {
-   //        console.log('Error' , error);
-   //      });
-   // });
- 
- 
- 
+
+    function navigate(){
+        props.navigation.navigate('Specificstory');
+        console.log('TRansition');
+    }
+
    return (
      <View style = {{flex : 1 ,alignItems : 'center',backgroundColor :  theme.flatListBgColor}}>
        <Image source = {bbcNews} style = {styles.imageStyle}/>
-       <CustomFlatList data = {data}/>
+       <CustomFlatList data = {data} onPress = {navigate}/>
+
      </View>
    );
  };
