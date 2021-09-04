@@ -1,31 +1,50 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
- import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef } from 'react';
  import {
    StyleSheet,
    View,
+   ActivityIndicator,
    Text,
    Image,
+   Pressable,
  } from 'react-native';
  import WebView from 'react-native-webview';
- //import all the components we are going to use.
- import axios from 'react-native-axios';
  import * as theme from '../../styles/theme';
+ import { Header } from '../../components/Header';
+ import previous from '../../assets/Icons/previous.png';
+ import next from '../../assets/Icons/next.png';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
- 
+ const showActivityIndicator = () => (
+    <ActivityIndicator 
+          color = 'red'
+          size = 'large'
+          style = {{flex : 1 , justifyContent  : 'center'}}/>
+ );
+
  export function Specificstory() : React.ReactElement{
    return (
-     <View style = {{flex : 1 ,alignItems : 'center', justifyContent : 'center',backgroundColor :  theme.colors.white}}>
-         <Text style = {{color :  theme.colors.white ,  ...theme.typography.type300}}>Specific Story</Text>
-     </View>
+     <SafeAreaView style = {{flex : 1}}>
+       <Header title = 'Specific Story'/>
+         <WebView 
+                      javaScriptEnabled = {true}
+                      domStorageEnabled = {true}
+                      renderLoading = {showActivityIndicator}
+                      startInLoadingState = {true} 
+                      source = {{uri :  "https://www.newyorker.com/science/elements/reverse-innovation-could-save-lives-why-isnt-western-medicine-embracing-it"}}
+                      />
+            <View style = {{flexDirection : 'row', alignItems : 'center', justifyContent : 'center' ,position  : 'absolute' , flex : 1,bottom : 0,width : '100%'}}>
+                  <Pressable style = {{backgroundColor : '#000' , height : 50 ,width : 50,marginLeft : 10, marginBottom : 10,justifyContent : 'center' ,borderRadius : 50/2}}>
+                                <Image
+                                        style = {{height : 45 , width : 45,position : 'absolute',justifyContent : 'flex-end'}}
+                                        source = {previous}/>
+                            </Pressable>
+                <Pressable style = {{backgroundColor : '#000' , height : 50 ,width : 50,marginLeft : 10, marginBottom : 10,justifyContent : 'center' ,borderRadius : 50/2}}>
+                    <Image
+                            style = {{height : 45 , width : 45, left: 5,position : 'absolute',justifyContent : 'flex-end'}}
+                            source = {next}/>
+                </Pressable>
+            </View>
+     </SafeAreaView>
    );
  };
  

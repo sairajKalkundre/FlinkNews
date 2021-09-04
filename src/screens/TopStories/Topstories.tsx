@@ -23,11 +23,11 @@
  import { CustomFlatList} from '../../components/FlatList';
  import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParams } from "../../screens/routeParams";
-
+import {Header} from '../../components/Header';
+import { SafeAreaView } from 'react-native-safe-area-context';
 interface Topstoriesprops {
   navigation :  StackNavigationProp<RootStackParams ,  'Topstories'>;
 }
-
 
  export function TopStories(props:Topstoriesprops) : React.ReactElement{
    const [data , setData] = useState([{title : 'At an Afghanistan border crossing, people face uncertainty and a long wait' }, 
@@ -39,11 +39,11 @@ interface Topstoriesprops {
     }
 
    return (
-     <View style = {{flex : 1 ,alignItems : 'center',backgroundColor :  theme.flatListBgColor}}>
+     <SafeAreaView style = {{flex : 1 ,alignItems : 'center',backgroundColor :  theme.flatListBgColor}}>
+       <Header title = 'Top Stories' />
        <Image source = {bbcNews} style = {styles.imageStyle}/>
        <CustomFlatList data = {data} onPress = {navigate}/>
-
-     </View>
+     </SafeAreaView>
    );
  };
  

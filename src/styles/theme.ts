@@ -1,6 +1,7 @@
 export const colors = {
     white : '#FFF',
-    black : '#000'
+    black : '#000',
+    yellow : 'yellow'
 };
 
 export const flatListBgColor : string = '#000';
@@ -15,5 +16,9 @@ export const typography = {
         fontSize :  16,
         fontWeight : '400' as const,
         lineHeight : 20
+    },
+    headerTypography : {
+        fontSize : 18 ,
+        fontWeight : 'bold' as const,
     }
 }

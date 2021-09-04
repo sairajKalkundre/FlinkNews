@@ -1,14 +1,10 @@
 import React from "react";
 import { FlatList,StyleSheet,Text,TouchableOpacity,View } from "react-native";
 import * as theme from './../../styles/theme';
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParams } from "../../screens/routeParams";
-
 
 interface FlatListProps {
     data : Array<Object>,
     onPress() : void
-    // navigation :  StackNavigationProp<RootStackParams ,  'Topstories'>;
 }
 
 const styles = StyleSheet.create({
