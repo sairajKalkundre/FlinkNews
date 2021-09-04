@@ -8,23 +8,18 @@
  * @format
  */
 
- import React, { useEffect, useState } from 'react';
- import {
-   StyleSheet,
-   View,
-   Text,
-   Image,TouchableOpacity
- } from 'react-native';
- import WebView from 'react-native-webview';
- //import all the components we are going to use.
- import axios from 'react-native-axios';
- import bbcNews from '../../assets/images/bbcNews.png';
- import * as theme from '../../styles/theme';
- import { CustomFlatList} from '../../components/FlatList';
  import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParams } from "../../screens/routeParams";
-import {Header} from '../../components/Header';
+import React, { useState } from 'react';
+import {
+  Image, StyleSheet
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import bbcNews from '../../assets/images/bbcNews.png';
+import { CustomFlatList } from '../../components/FlatList';
+import { Header } from '../../components/Header';
+import { RootStackParams } from "../../screens/routeParams";
+import styles from './Topstories.style';
+import * as theme from '../../styles/theme';
 
 interface Topstoriesprops {
   navigation :  StackNavigationProp<RootStackParams ,  'Topstories'>;
@@ -36,25 +31,16 @@ interface Topstoriesprops {
 
     function navigate(){
         props.navigation.navigate('Specificstory');
-        console.log('TRansition');
     }
 
    return (
-     <SafeAreaView style = {{flex : 1 ,alignItems : 'center',backgroundColor :  theme.flatListBgColor}}>
-       <Header title = 'Top Stories' />
+     <SafeAreaView style = {styles.container}>
+       <Header title = 'Top stories'  backButtonVisible = {false}/>
        <Image source = {bbcNews} style = {styles.imageStyle}/>
        <CustomFlatList data = {data} onPress = {navigate}/>
      </SafeAreaView>
    );
  };
- 
- const styles = StyleSheet.create({
-     imageStyle : {
-       height : 100 , 
-       width : 100,
-       marginTop : 10
-     }
- });
  
 
  

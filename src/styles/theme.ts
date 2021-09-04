@@ -18,7 +18,7 @@ export const typography = {
         lineHeight : 20
     },
     headerTypography : {
-        fontSize : 18 ,
-        fontWeight : 'bold' as const,
+        fontSize : 20 ,
+        fontWeight : '600' as const,
     }
 }

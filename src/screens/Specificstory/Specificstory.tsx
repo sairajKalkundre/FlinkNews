@@ -1,20 +1,18 @@
-import React, { useEffect, useState,useRef } from 'react';
- import {
-   StyleSheet,
-   View,
-   ActivityIndicator,
-   Text,
-   Image,
-   Pressable,
- } from 'react-native';
- import WebView from 'react-native-webview';
- import * as theme from '../../styles/theme';
- import { Header } from '../../components/Header';
- import previous from '../../assets/Icons/previous.png';
- import next from '../../assets/Icons/next.png';
+import React from 'react';
+import {
+  ActivityIndicator, StyleSheet
+} from 'react-native';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParams } from "../../screens/routeParams";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { CustomWebView } from '../../components/WebView';
+import WebView from 'react-native-webview';
 import { FloatingButton } from '../../components/Fab';
+import { Header } from '../../components/Header';
+
+interface SpecificStoryProps {
+  navigation :  StackNavigationProp<RootStackParams ,  'Specificstory'>;
+
+}
 
  const showActivityIndicator = () => (
     <ActivityIndicator 
@@ -23,11 +21,14 @@ import { FloatingButton } from '../../components/Fab';
           style = {{flex : 1 , justifyContent  : 'center'}}/>
    )
 
-
- export function Specificstory() : React.ReactElement{
+ export function Specificstory(props : SpecificStoryProps) : React.ReactElement{
+    function navigate(){
+      console.log('TRansition');
+      props.navigation.goBack();
+  }
    return (
      <SafeAreaView style = {{flex : 1}}>
-              <Header title = 'Specific Story'/>
+              <Header title = 'Specific story' backButtonVisible = {true} onPress = {navigate}/>
                 <WebView 
                               javascriptEnabled = {true}
                               domStorageEnabled = {true}

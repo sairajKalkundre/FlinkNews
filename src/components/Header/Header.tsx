@@ -1,16 +1,26 @@
 import React from "react";
-import { View,Text } from "react-native";
-import * as theme from '../../styles/theme';
+import { View,Text, TouchableOpacity, Image } from "react-native";
+import pervious from '../../assets/Icons/previous.png'
+import styles from './Header.style'
+
+type onPress = () => void;
 
 interface HeaderProps {
     title : string,
-    onPress ?:  void 
+    onPress :  onPress,
+    backButtonVisible : boolean
 };
+
 
 export function Header(props : HeaderProps):React.ReactElement{
     return(
-        <View style = {{height : 40 ,backgroundColor : 'black' , width : '100%',alignItems:'center',justifyContent : 'center'}}> 
-                <Text style = {{...theme.typography.headerTypography , color : 'white' }}>{props.title}</Text>
+        <View style = {styles.headerContainer}> 
+                {props.backButtonVisible ? 
+                            <TouchableOpacity onPress = {props.onPress}>
+                            <Image source = {pervious} style = {styles.backButtonStyle}/>
+                        </TouchableOpacity>
+                        :  null}
+                <Text style = {styles.textStyle}>{props.title}</Text>
         </View>
     )
 }
