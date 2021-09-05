@@ -18,7 +18,7 @@ export default StyleSheet.create<Style>({
     textStyle : {
         ...theme.typography.headerTypography , 
         color : 'white',
-        marginLeft : 10
+        marginLeft : 10,
     },
     backButtonStyle : {
         height : 30, 

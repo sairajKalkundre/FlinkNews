@@ -9,9 +9,10 @@ import WebView from 'react-native-webview';
 import { FloatingButton } from '../../components/Fab';
 import { Header } from '../../components/Header';
 
-type SpecificStoryProps = StackNavigationProp<RootStackParams ,  'Specificstory'>
-
-
+interface SpecificStoryProps {
+  navigation :  StackNavigationProp<RootStackParams ,  'Specificstory'>,
+  route  : any
+}
 
  const showActivityIndicator = () => (
     <ActivityIndicator 
@@ -32,11 +33,11 @@ type SpecificStoryProps = StackNavigationProp<RootStackParams ,  'Specificstory'
       navigation.goBack();
   }
   useEffect(() => {
-    console.log(route.url);
+    console.log(route.params)
 },[])
    return (
      <SafeAreaView style = {{flex : 1, backgroundColor : '#000'}}>
-              <Header title = 'Specific story' backButtonVisible = {true} onPress = {navigate}/>
+              <Header title = {route.params.title} backButtonVisible = {true} onPress = {navigate}/>
                 <WebView 
                               style = {{flex : 1}}
                               originWhitelist={['*']}
@@ -44,7 +45,7 @@ type SpecificStoryProps = StackNavigationProp<RootStackParams ,  'Specificstory'
                               domStorageEnabled = {true}
                               renderLoading = {showActivityIndicator}
                               startInLoadingState = {true} 
-                              source = {{uri :  "https://www.express.co.uk/news/world/1486258/Angela-merkel-chancellor-german-election-politics-candidate-cdu-europe-chris-parry-news-vn"}}
+                              source = {{uri :  route.params.url}}
                               />
                   <FloatingButton />
 

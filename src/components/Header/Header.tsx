@@ -20,7 +20,7 @@ export function Header(props : HeaderProps):React.ReactElement{
                             <Image source = {pervious} style = {styles.backButtonStyle}/>
                         </TouchableOpacity>
                         :  null}
-                <Text style = {styles.textStyle}>{props.title}</Text>
+                <Text style = {styles.textStyle} numberOfLines = {1}>{props.title}</Text>
         </View>
     )
 }
