@@ -1,4 +1,4 @@
-import axios,{AxiosResponse} from 'react-native-axios';
+import axios,{AxiosResponse , AxiosError} from 'react-native-axios';
 
 interface idInterface {
     id : number,
@@ -14,20 +14,12 @@ interface storyInterface {
 var arr : number[];
 var storyObj : idInterface[] = [];
 
-export async function ApiCallForID ()  :  Promise<any>{
-                            await axios.get('https://hacker-news.firebaseio.com/v0/topstories.json')
-                            .then(function (response : AxiosResponse) {
-                                        arr = response.data;
-                            })
-                            .catch(function (error) { 
-                                            console.log(error);
-                                    });
-                            arr.forEach((item , i) => {
-                                    storyObj.push({id : i , value : item});
-                            });
-                            console.log('Array' , storyObj);
-                            return ApiCallForData(storyObj);
-                        }
+export async function ApiCallForID ()  :  Promise<[]>{
+    return await axios.get('https://hacker-news.firebaseio.com/v0/topstories.json')
+                                                .then((response : AxiosResponse)  => response.data)
+                                                .catch((error :  AxiosError) =>console.log(error) );
+                      
+ }
 
 export async function ApiCallForData(objID :  Array<idInterface>) : Promise<any>{
                     let wholeStoryArr : Array<any> = [];
@@ -39,7 +31,7 @@ export async function ApiCallForData(objID :  Array<idInterface>) : Promise<any>
                                 wholeStoryArr.push(response.data);
                             }));
                         }       
-                    Promise.all(promises).then(() => {return convertWholeToSpecific(wholeStoryArr)});
+                    return Promise.all(promises).then(() => wholeStoryArr);
                     }
 
 

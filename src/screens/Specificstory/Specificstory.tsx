@@ -1,14 +1,12 @@
-import React, { useEffect,useState,useRef } from 'react';
-import {
-  ActivityIndicator, StyleSheet,StatusBar
-} from 'react-native';
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParams } from "../../screens/routeParams";
+import React, { useEffect, useRef, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 import { FloatingButton } from '../../components/Fab';
 import { Header } from '../../components/Header';
-import {ProgressBar} from '../../components/ProgressBar';
+import { ProgressBar } from '../../components/ProgressBar';
+import { RootStackParams } from "../../screens/routeParams";
+import styles from './Specificstory.style';
 
 interface SpecificStoryProps {
   navigation :  StackNavigationProp<RootStackParams ,  'Specificstory'>,
@@ -16,13 +14,7 @@ interface SpecificStoryProps {
 }
 
  const showActivityIndicator = () => (
-   <ProgressBar style = {{position: 'absolute',
-                                            flex: 1,
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            height: '100%',
-                                            width: '100%',
-                                            backgroundColor: 'grey'}}/>
+   <ProgressBar style = {styles.activityIndicatorStyle}/>
    )
 
  export function Specificstory({navigation , route}: SpecificStoryProps) : React.ReactElement{
@@ -47,7 +39,7 @@ interface SpecificStoryProps {
     console.log(route.params)
 },[])
    return (
-     <SafeAreaView style = {{flex : 1, backgroundColor : '#000'}}>
+     <SafeAreaView style = {styles.container}>
               <Header title = {route.params.title} backButtonVisible = {true} onPress = {navigate}/>
                 <WebView 
                               style = {{flex : 1}}
@@ -65,18 +57,10 @@ interface SpecificStoryProps {
                               }}
                               />
                   <FloatingButton onNext = {frontButtonHandler} onPrevious = {backButtonHandler}/>
-
      </SafeAreaView>
    );
  };
- 
- const styles = StyleSheet.create({
-     imageStyle : {
-       height : 100 , 
-       width : 100,
-       marginTop : 10
-     }
- });
+
  
 
  

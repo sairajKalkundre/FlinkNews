@@ -9,82 +9,54 @@
  */
 
  import { StackNavigationProp } from "@react-navigation/stack";
-import React, { useEffect, useState,useMemo } from 'react';
-import {
-  Image, StyleSheet,ActivityIndicator
-} from 'react-native';
+import React, { useEffect, useMemo, useState } from 'react';
+import {Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import bbcNews from '../../assets/images/bbcNews.png';
 import { CustomFlatList } from '../../components/FlatList';
 import { Header } from '../../components/Header';
+import { ProgressBar } from '../../components/ProgressBar';
 import { RootStackParams } from "../../screens/routeParams";
+import { ApiCallForData, ApiCallForID, convertWholeToSpecific } from '../../utils/axios';
 import styles from './Topstories.style';
-import * as theme from '../../styles/theme';
-import axios , {AxiosResponse} from 'react-native-axios';
-import {ProgressBar} from '../../components/ProgressBar';
+
 interface Topstoriesprops {
   navigation :  StackNavigationProp<RootStackParams ,  'Topstories'>;
 }
 
+interface idInterface {
+  id : number,
+  value : number
+};
+
+interface storyInterface {
+  id : number ,
+  url : string,
+  title : string
+};
+
  export function TopStories(props:Topstoriesprops) : React.ReactElement{
 
-      interface storyInterface {
-              id : number ,
-              url : string,
-              title : string
-     };
-
     const [storyArr , setStoryArr] = useState<storyInterface[]>([]);
-    var arr : number[];
-
-    interface idInterface {
-          id : number,
-          value : number
-      };
-
-     var storyObj : idInterface[] = [];
-
-    async function apiCallForID () {
-                  await axios.get('https://hacker-news.firebaseio.com/v0/topstories.json')
-                  .then(function (response : AxiosResponse) {
-                              arr = response.data;
-                  })
-                  .catch(function (error) { 
-                                  console.log(error);
-                            });
-                  arr.forEach((item , i) => {
-                            storyObj.push({id : i , value : item});
-                  });
-                  console.log('Array' , storyObj);
-                  apiCallForData(storyObj);
+  
+     async function apiCall() {
+            const idData : [] = await ApiCallForID();
+            var storyObj : idInterface[] = [];
+            idData.forEach((item , i) => {
+                  storyObj.push({id : i , value : item});
+              });
+            console.log('Arrs' ,  storyObj);
+            
+            //Fetching data with title url and id
+            const wholeData : Array<any> = await ApiCallForData(storyObj);
+            console.log('Whole Data' , wholeData);
+            
+            //Converting to Desired data
+            setStoryArr(convertWholeToSpecific(wholeData));
      }
-
-     async function apiCallForData(objID :  Array<idInterface>){
-          let wholeStoryArr : Array<any> = [];
-          let promises = [];
-            for (var i = 0; i < objID.length; i++) {
-                 let url : string = 'https://hacker-news.firebaseio.com/v0/item/'+objID[i].value+'.json';
-                  promises.push(
-                      axios.get<storyInterface[]>(url).then((response : AxiosResponse) => {
-                            wholeStoryArr.push(response.data);
-                      }));
-                  }       
-            Promise.all(promises).then(() => 
-                              convertWholeToSpecific(wholeStoryArr)
-                              );
-     }
-
-     function convertWholeToSpecific(arr : Array<any>){
-          let specificStory : storyInterface[] = [];
-          arr.forEach((item , i) => {
-            specificStory.push({id : item.id , title : item.title , url : item.url});
-         });
-         console.log('Specific Arr ' , specificStory); 
-         setStoryArr(specificStory);
-     }
-
+     
      useEffect( () => {
-              apiCallForID();
+               apiCall();
       },[]);
 
       const memiosedFlatList = useMemo(() => {
@@ -93,19 +65,18 @@ interface Topstoriesprops {
   
 
     const showActivityIndicator = () => (
-      <ProgressBar style = {{   flex: 1,
-                                justifyContent: 'center',
-                                alignSelf: 'center',
-                                backgroundColor: 'black'}} />
- 
+                <ProgressBar style = {{flex: 1,
+                                                    justifyContent: 'center',
+                                                    alignSelf: 'center',
+                                                    backgroundColor: 'black'}} />
      )
 
    return (
-     <SafeAreaView style = {styles.container}>
-       <Header title = 'Top stories'  backButtonVisible = {false}/>
-       <Image source = {bbcNews} style = {styles.imageStyle}/>
-        {storyArr.length == 0 ? showActivityIndicator() :  memiosedFlatList}
-     </SafeAreaView>
+              <SafeAreaView style = {styles.container}>
+                      <Header title = 'Top stories'  backButtonVisible = {false}/>
+                      <Image source = {bbcNews} style = {styles.imageStyle}/>
+                        {storyArr.length == 0 ? showActivityIndicator() :  memiosedFlatList}
+              </SafeAreaView>
    );
  };
  
