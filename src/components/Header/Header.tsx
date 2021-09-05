@@ -7,7 +7,7 @@ type onPress = () => void;
 
 interface HeaderProps {
     title : string,
-    onPress :  onPress,
+    onPress ?:  onPress,
     backButtonVisible : boolean
 };
 

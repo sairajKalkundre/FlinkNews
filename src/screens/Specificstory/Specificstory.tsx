@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ActivityIndicator, StyleSheet,StatusBar
 } from 'react-native';
@@ -9,10 +9,9 @@ import WebView from 'react-native-webview';
 import { FloatingButton } from '../../components/Fab';
 import { Header } from '../../components/Header';
 
-interface SpecificStoryProps {
-  navigation :  StackNavigationProp<RootStackParams ,  'Specificstory'>;
+type SpecificStoryProps = StackNavigationProp<RootStackParams ,  'Specificstory'>
 
-}
+
 
  const showActivityIndicator = () => (
     <ActivityIndicator 
@@ -27,11 +26,14 @@ interface SpecificStoryProps {
                             backgroundColor: 'white'}}/>
    )
 
- export function Specificstory(props : SpecificStoryProps) : React.ReactElement{
+ export function Specificstory({navigation , route}: SpecificStoryProps) : React.ReactElement{
     function navigate(){
       console.log('TRansition');
-      props.navigation.goBack();
+      navigation.goBack();
   }
+  useEffect(() => {
+    console.log(route.url);
+},[])
    return (
      <SafeAreaView style = {{flex : 1, backgroundColor : '#000'}}>
               <Header title = 'Specific story' backButtonVisible = {true} onPress = {navigate}/>
