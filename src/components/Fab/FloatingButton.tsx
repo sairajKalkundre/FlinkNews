@@ -1,10 +1,11 @@
 import React from "react";
-import {View , Pressable , Image, StyleSheet} from 'react-native';
+import {View , Image, StyleSheet, TouchableOpacity} from 'react-native';
 import previous from '../../assets/Icons/previous.png';
 import next from '../../assets/Icons/next.png';
 
 interface FloatingProps {
-
+    onPrevious() : void;
+    onNext() : void;
 }
 
 let size : number = 50 ;
@@ -37,16 +38,16 @@ const styles = StyleSheet.create({
 export function FloatingButton(props : FloatingProps) : React.ReactElement{
     return(
         <View style = {{flexDirection : 'row', alignItems : 'center', justifyContent : 'center' ,position  : 'absolute' , flex : 1,bottom : 0,width : '100%' , backgroundColor : 'transparent'}}>
-        <Pressable style = {styles.btnContainer}>
+        <TouchableOpacity style = {styles.btnContainer} onPress = {props.onPrevious}>
                       <Image
                               style = {styles.previousStyle}
                               source = {previous}/>
-                  </Pressable>
-      <Pressable style = {styles.btnContainer}>
+                  </TouchableOpacity>
+      <TouchableOpacity style = {styles.btnContainer} onPress = {props.onNext}>
           <Image
                   style = {styles.nextStyle}
                   source = {next}/>
-      </Pressable>
+      </TouchableOpacity>
   </View>
     );
 }

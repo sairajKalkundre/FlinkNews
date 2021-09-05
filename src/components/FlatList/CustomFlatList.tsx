@@ -3,16 +3,10 @@ import { FlatList,StyleSheet,Text,TouchableOpacity,View } from "react-native";
 import * as theme from './../../styles/theme';
 import { StackNavigationProp } from "@react-navigation/stack";
 
-type RootStackParams = {
-    Topstories : undefined,
-    Specificstory : {url : string ,  title : string}
-}
-
 interface FlatListProps {
     data : Array<Object>,
-    navigate :   StackNavigationProp<RootStackParams ,  'Topstories'>
+    navigate :  any;
 }
-
 
 const styles = StyleSheet.create({
     textStyle : {

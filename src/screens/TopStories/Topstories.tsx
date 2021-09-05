@@ -11,7 +11,7 @@
  import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect, useState,useMemo } from 'react';
 import {
-  Image, StyleSheet
+  Image, StyleSheet,ActivityIndicator
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import bbcNews from '../../assets/images/bbcNews.png';
@@ -21,7 +21,7 @@ import { RootStackParams } from "../../screens/routeParams";
 import styles from './Topstories.style';
 import * as theme from '../../styles/theme';
 import axios , {AxiosResponse} from 'react-native-axios';
-
+import {ProgressBar} from '../../components/ProgressBar';
 interface Topstoriesprops {
   navigation :  StackNavigationProp<RootStackParams ,  'Topstories'>;
 }
@@ -91,15 +91,20 @@ interface Topstoriesprops {
                return <CustomFlatList data = {storyArr} navigate = {props.navigation}/>
       } , [storyArr]);
   
-    function navigate(){
-        props.navigation.navigate('Specificstory');
-    }
+
+    const showActivityIndicator = () => (
+      <ProgressBar style = {{   flex: 1,
+                                justifyContent: 'center',
+                                alignSelf: 'center',
+                                backgroundColor: 'black'}} />
+ 
+     )
 
    return (
      <SafeAreaView style = {styles.container}>
        <Header title = 'Top stories'  backButtonVisible = {false}/>
        <Image source = {bbcNews} style = {styles.imageStyle}/>
-        {memiosedFlatList}
+        {storyArr.length == 0 ? showActivityIndicator() :  memiosedFlatList}
      </SafeAreaView>
    );
  };
