@@ -1,4 +1,4 @@
-//Navigation of all screens
+//Root Navigator
 import React from "react";
 import { TopStories } from "./TopStories";
 import { Specificstory } from "./Specificstory";

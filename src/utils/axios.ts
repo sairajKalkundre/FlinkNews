@@ -32,8 +32,7 @@ export async function ApiCallForData(objID :  Array<idInterface>) : Promise<any>
                             }));
                         }       
                     return Promise.all(promises).then(() => wholeStoryArr);
-                    }
-
+ }
 
 export function convertWholeToSpecific(arr : Array<any>) : storyInterface[]{
     let specificStory : storyInterface[] = [];

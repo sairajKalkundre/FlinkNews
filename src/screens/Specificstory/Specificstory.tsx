@@ -1,12 +1,14 @@
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect, useRef, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from "react-native";
 import WebView from 'react-native-webview';
 import { FloatingButton } from '../../components/Fab';
 import { Header } from '../../components/Header';
 import { ProgressBar } from '../../components/ProgressBar';
 import { RootStackParams } from "../../screens/routeParams";
 import styles from './Specificstory.style';
+import {StatusBar} from '../../components/StatusBar';
 
 interface SpecificStoryProps {
   navigation :  StackNavigationProp<RootStackParams ,  'Specificstory'>,
@@ -39,7 +41,8 @@ interface SpecificStoryProps {
     console.log(route.params)
 },[])
    return (
-     <SafeAreaView style = {styles.container}>
+     <View style = {styles.container}>
+            <StatusBar/>
               <Header title = {route.params.title} backButtonVisible = {true} onPress = {navigate}/>
                 <WebView 
                               style = {{flex : 1}}
@@ -57,7 +60,7 @@ interface SpecificStoryProps {
                               }}
                               />
                   <FloatingButton onNext = {frontButtonHandler} onPrevious = {backButtonHandler}/>
-     </SafeAreaView>
+     </View>
    );
  };
 

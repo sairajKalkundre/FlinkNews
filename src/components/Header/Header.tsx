@@ -2,7 +2,6 @@ import React from "react";
 import { View,Text, TouchableOpacity, Image } from "react-native";
 import pervious from '../../assets/Icons/previous.png'
 import styles from './Header.style'
-
 type onPress = () => void;
 
 interface HeaderProps {
