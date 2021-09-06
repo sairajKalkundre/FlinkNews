@@ -10,7 +10,7 @@ export default StyleSheet.create<Style>({
     container : {
         flex : 1 ,
         alignItems : 'center',
-        backgroundColor :  theme.flatListBgColor
+        backgroundColor :  theme.colors.black
     },
     imageStyle  : {
         height : 100 , 

@@ -19,6 +19,7 @@ import { ProgressBar } from '../../components/ProgressBar';
 import { RootStackParams } from "../../screens/routeParams";
 import { ApiCallForData, ApiCallForID, convertWholeToSpecific } from '../../utils/axios';
 import styles from './Topstories.style';
+import * as theme  from '../../styles/theme';
 
 interface Topstoriesprops {
   navigation :  StackNavigationProp<RootStackParams ,  'Topstories'>;
@@ -68,7 +69,7 @@ interface storyInterface {
                 <ProgressBar style = {{flex: 1,
                                                     justifyContent: 'center',
                                                     alignSelf: 'center',
-                                                    backgroundColor: 'black'}} />
+                                                    backgroundColor: theme.colors.black}} />
      )
 
    return (

@@ -11,13 +11,13 @@ export default StyleSheet.create<Style>({
     headerContainer  : {
         height : 45 ,
         flexDirection : 'row',
-        backgroundColor : 'black' , 
+        backgroundColor : theme.colors.black , 
         width : '100%',
         alignItems:'center',
     },
     textStyle : {
         ...theme.typography.headerTypography , 
-        color : 'white',
+        color : theme.colors.white,
         marginLeft : 10,
         marginRight : 20,
         top : 1

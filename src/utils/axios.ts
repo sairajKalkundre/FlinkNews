@@ -29,7 +29,8 @@ export async function ApiCallForData(objID :  Array<idInterface>) : Promise<any>
                         promises.push(
                             await axios.get<storyInterface[]>(url).then((response : AxiosResponse) => {
                                 wholeStoryArr.push(response.data);
-                            }));
+                            }).catch((error : AxiosError) => console.log(error))
+                            );
                         }       
                     return Promise.all(promises).then(() => wholeStoryArr);
  }

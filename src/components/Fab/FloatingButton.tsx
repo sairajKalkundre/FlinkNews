@@ -2,6 +2,7 @@ import React from "react";
 import {View , Image, StyleSheet, TouchableOpacity} from 'react-native';
 import previous from '../../assets/Icons/previous.png';
 import next from '../../assets/Icons/next.png';
+import * as theme from '../../styles/theme';
 
 interface FloatingProps {
     onPrevious() : void;
@@ -12,7 +13,7 @@ let size : number = 50 ;
 
 const styles = StyleSheet.create({
     btnContainer : {
-        backgroundColor : '#000' , 
+        backgroundColor : theme.colors.black , 
         height : size ,
         width : size,
         marginLeft : 10, 

@@ -2,7 +2,8 @@ export const colors = {
     white : '#FFF',
     black : '#000',
     yellow : 'yellow',
-    grey : 'grey'
+    grey : 'grey',
+    red : 'red'
 };
 
 export const flatListBgColor : string = '#000';
