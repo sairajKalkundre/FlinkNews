@@ -16,3 +16,4 @@ This is a react native News app
 - useMemo
 
 ## Screenshots
+![1](https://github.com/sairajKalkundre/FlinkNews/blob/master/screenshots/Screenshot%202021-09-06%20at%207.57.38%20AM.png)
