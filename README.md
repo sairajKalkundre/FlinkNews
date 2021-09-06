@@ -17,3 +17,9 @@ This is a react native News app
 
 ## Screenshots
 ![1](https://github.com/sairajKalkundre/FlinkNews/blob/master/screenshots/ScreenALoading.png)
+![2](https://github.com/sairajKalkundre/FlinkNews/blob/master/screenshots/ScreenLoaded.png)
+![3](https://github.com/sairajKalkundre/FlinkNews/blob/master/screenshots/webview.png)
+![4](https://github.com/sairajKalkundre/FlinkNews/blob/master/screenshots/webviewLoading.png)
+
+
+
