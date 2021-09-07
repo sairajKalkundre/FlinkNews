@@ -17,7 +17,7 @@ var storyObj : idInterface[] = [];
 export async function ApiCallForID ()  :  Promise<[]>{
     return await axios.get('https://hacker-news.firebaseio.com/v0/topstories.json')
                                                 .then((response : AxiosResponse)  => response.data)
-                                                .catch((error :  AxiosError) =>console.log(error) );
+                                                .catch((error :  AxiosError) => {axiosErrorToError(error)} );
                       
  }
 
@@ -25,12 +25,12 @@ export async function ApiCallForData(objID :  Array<idInterface>) : Promise<any>
                     let wholeStoryArr : Array<any> = [];
                     let promises = [];
                     for (var i = 0; i < objID.length; i++) {
-                    let url : string = 'https://hacker-news.firebaseio.com/v0/item/'+objID[i].value+'.json';
-                        promises.push(
-                            await axios.get<storyInterface[]>(url).then((response : AxiosResponse) => {
-                                wholeStoryArr.push(response.data);
-                            }).catch((error : AxiosError) => console.log(error))
-                            );
+                            let url : string = 'https://hacker-news.firebaseio.com/v0/item/'+objID[i].value+'.json';
+                                promises.push(
+                                    await axios.get<storyInterface[]>(url).then((response : AxiosResponse) => {
+                                        wholeStoryArr.push(response.data);
+                                    }).catch((error : AxiosError) => {throw axiosErrorToError(error)})
+                                    );
                         }       
                     return Promise.all(promises).then(() => wholeStoryArr);
  }
@@ -43,3 +43,7 @@ export function convertWholeToSpecific(arr : Array<any>) : storyInterface[]{
     console.log('Specific Arr ' , specificStory); 
     return specificStory;
 }
+
+function axiosErrorToError(err: AxiosError) {
+	return new Error(`${err.message}: ${JSON.stringify(err.response?.data)}`);
+}   

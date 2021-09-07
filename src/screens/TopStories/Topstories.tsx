@@ -46,6 +46,7 @@ interface storyInterface {
             idData.forEach((item , i) => {
                   storyObj.push({id : i , value : item});
               });
+              // console.log(`Arrs ${storyObj}`);
             console.log('Arrs' ,  storyObj);
             
             //Fetching data with title url and id

@@ -21,7 +21,6 @@ interface SpecificStoryProps {
 
  export function Specificstory({navigation , route}: SpecificStoryProps) : React.ReactElement{
     function navigate(){
-      console.log('TRansition');
       navigation.goBack();
   }
   const [canGoBack, setCanGoBack] = useState(false);
