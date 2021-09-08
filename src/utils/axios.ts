@@ -45,5 +45,6 @@ export function convertWholeToSpecific(arr : Array<any>) : storyInterface[]{
 }
 
 function axiosErrorToError(err: AxiosError) {
-	return new Error(`${err.message}: ${JSON.stringify(err.response?.data)}`);
+    return new Error(err.message + ' :  ' + JSON.stringify(err.response?.data));
+	// return new Error(`${err.message}: ${JSON.stringify(err.response?.data)}`);
 }   
